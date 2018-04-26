@@ -7,13 +7,21 @@ public class User {
     private String mobile;
     private String password;
     private String token;
-    private String city;
-    private String job;
+    private int city;
+    private int job;
     private String resume;
     private int isSuper;
     private String company;
 
     public User() {
+    }
+
+    public User(long id) {
+        this.id = id;
+    }
+
+    public User(String token) {
+        this.token = token;
     }
 
     public long getId() {
@@ -56,19 +64,19 @@ public class User {
         this.token = token;
     }
 
-    public String getCity() {
+    public int getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(int city) {
         this.city = city;
     }
 
-    public String getJob() {
+    public int getJob() {
         return job;
     }
 
-    public void setJob(String job) {
+    public void setJob(int job) {
         this.job = job;
     }
 

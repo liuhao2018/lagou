@@ -4,10 +4,7 @@ import com.liuhao.lagou.model.CommonAPIResponse;
 import com.liuhao.lagou.model.User;
 import com.liuhao.lagou.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -29,4 +26,31 @@ public class UserController {
         response.setData(userService.refreshToken(loginUser));
         return response;
     }
+
+    @PostMapping("/reset-password")
+    public CommonAPIResponse resetPassword(@RequestBody User user) {
+        userService.resetPassword(user);
+        return new CommonAPIResponse();
+    }
+
+    @PostMapping("/update")
+    public CommonAPIResponse updateUserName(@RequestBody User user) {
+        userService.updateUserName(user);
+        return new CommonAPIResponse();
+    }
+
+    @GetMapping("/{id}")
+    public CommonAPIResponse<User> view(@PathVariable long id) {
+        User user = userService.view(new User(id));
+        CommonAPIResponse<User> response = new CommonAPIResponse<>();
+        response.setData(user);
+        return response;
+    }
+
+    @PostMapping("/apply-for-super")
+    public CommonAPIResponse applyForSuper(@RequestBody User user) {
+        userService.applyForSuper(user);
+        return new CommonAPIResponse();
+    }
+
 }

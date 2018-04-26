@@ -17,4 +17,16 @@ public interface UserMapper {
     User login(User user);
     @Update("update user set token = #{token} where mobile = #{mobile}")
     void refreshToken(User user);
+
+    @Update("update user set password = #{password} where token = #{token}")
+    void resetPassword(User user);
+
+    @Update("update user set name = #{name},sex = #{sex},city = #{city}, job = #{job} where token = #{token}")
+    void updateUserName(User user);
+
+    @Select("select * from user where id = #{id}")
+    User view(User user);
+
+    @Update("update user set super = 1 where token = #{token}")
+    void applyForSuper(User user);
 }

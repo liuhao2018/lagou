@@ -31,4 +31,23 @@ public class UserServiceImpl implements IUserService {
         return user;
     }
 
+    @Override
+    public void resetPassword(User user) {
+        userMapper.resetPassword(user);
+    }
+
+    @Override
+    public void updateUserName(User user) {
+        userMapper.updateUserName(user);
+    }
+
+    @Override
+    public User view(User user) {
+        return userMapper.view(user);
+    }
+
+    @Override
+    public void applyForSuper(User user) {
+        userMapper.applyForSuper(user);
+    }
 }
