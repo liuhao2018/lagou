@@ -1,7 +1,8 @@
-package com.liuhao.lagou.service;
+package com.liuhao.lagou.service.impl;
 
 import com.liuhao.lagou.mapper.ItemMapper;
 import com.liuhao.lagou.model.Item;
+import com.liuhao.lagou.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Transactional
 @Service
-public class ItemServiceImpl implements IItemService{
+public class ItemServiceImpl implements IItemService {
 
     @Autowired
     private ItemMapper itemMapper;

@@ -1,7 +1,8 @@
-package com.liuhao.lagou.service;
+package com.liuhao.lagou.service.impl;
 
 import com.liuhao.lagou.mapper.UserMapper;
 import com.liuhao.lagou.model.User;
+import com.liuhao.lagou.service.IUserService;
 import com.liuhao.lagou.util.TokenGenerateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
