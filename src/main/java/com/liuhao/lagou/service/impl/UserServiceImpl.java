@@ -16,8 +16,8 @@ public class UserServiceImpl implements IUserService {
     private UserMapper userMapper;
 
     @Override
-    public void register(User user) {
-        userMapper.register(user);
+    public int register(User user) {
+        return userMapper.register(user);
     }
 
     @Override
@@ -26,29 +26,27 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User refreshToken(User user) {
-        user.setToken(TokenGenerateUtil.generate(user.getMobile()));
-        userMapper.refreshToken(user);
-        return user;
+    public int refreshToken(String mobile) {
+        return userMapper.refreshToken(mobile,TokenGenerateUtil.generate(mobile));
     }
 
     @Override
-    public void resetPassword(User user) {
-        userMapper.resetPassword(user);
+    public int resetPassword(User user) {
+        return userMapper.resetPassword(user);
     }
 
     @Override
-    public void updateUserName(User user) {
-        userMapper.updateUserName(user);
+    public int updateUserInfo(User user) {
+        return userMapper.updateUserInfo(user);
     }
 
     @Override
-    public User view(User user) {
-        return userMapper.view(user);
+    public User view(long id) {
+        return userMapper.view(id);
     }
 
     @Override
-    public void applyForSuper(User user) {
-        userMapper.applyForSuper(user);
+    public int applyForSuper(long id) {
+        return userMapper.applyForSuper(id);
     }
 }

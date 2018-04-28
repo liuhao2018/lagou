@@ -15,42 +15,80 @@ public class UserController {
 
     @PostMapping("/register")
     public CommonAPIResponse register(@RequestBody User user) {
-        userService.register(user);
-        return new CommonAPIResponse();
+        CommonAPIResponse response = new CommonAPIResponse();
+        int result = userService.register(user);
+        if (result > 0 ) {
+            return response;
+        }
+        response.setCode(400);
+        response.setMessage("注册失败");
+        return response;
     }
 
     @PostMapping("/login")
-    public CommonAPIResponse<User> login(@RequestBody User user) {
+    public CommonAPIResponse login(@RequestBody User user) {
+        CommonAPIResponse response = new CommonAPIResponse();
         User loginUser = userService.login(user);
-        CommonAPIResponse<User> response = new CommonAPIResponse<>();
-        response.setData(userService.refreshToken(loginUser));
+        if (loginUser == null ) {
+            response.setCode(400);
+            response.setMessage("登录失败，手机号或密码错误");
+        }
+        int result = userService.refreshToken(loginUser.getMobile());
+        if (result > 0 ) {
+            return response;
+        }
+        response.setData(400);
+        response.setMessage("登录失败");
         return response;
     }
 
     @PostMapping("/reset-password")
     public CommonAPIResponse resetPassword(@RequestBody User user) {
-        userService.resetPassword(user);
-        return new CommonAPIResponse();
-    }
-
-    @PostMapping("/update")
-    public CommonAPIResponse updateUserName(@RequestBody User user) {
-        userService.updateUserName(user);
-        return new CommonAPIResponse();
-    }
-
-    @GetMapping("/{id}")
-    public CommonAPIResponse<User> view(@PathVariable long id) {
-        User user = userService.view(new User(id));
-        CommonAPIResponse<User> response = new CommonAPIResponse<>();
-        response.setData(user);
+        CommonAPIResponse response = new CommonAPIResponse();
+        int result = userService.resetPassword(user);
+        if (result > 0 ) {
+            return response;
+        }
+        response.setCode(400);
+        response.setMessage("修改密码失败");
         return response;
     }
 
-    @PostMapping("/apply-for-super")
-    public CommonAPIResponse applyForSuper(@RequestBody User user) {
-        userService.applyForSuper(user);
-        return new CommonAPIResponse();
+    @PostMapping("/update")
+    public CommonAPIResponse updateUserInfo(@RequestBody User user) {
+        CommonAPIResponse response = new CommonAPIResponse();
+        int result = userService.updateUserInfo(user);
+        if (result > 0 ) {
+            return response;
+        }
+        response.setCode(400);
+        response.setMessage("更新用户信息失败");
+        return response;
+    }
+
+    @GetMapping("/{id}")
+    public CommonAPIResponse view(@PathVariable long id) {
+        CommonAPIResponse response = new CommonAPIResponse<>();
+        User user = userService.view(id);
+        if (user != null) {
+            response.setData(user);
+            return response;
+        }
+        response.setCode(400);
+        response.setMessage("查看用户信息失败");
+        return response;
+    }
+
+    @PostMapping("/apply-for-super/{id}")
+    public CommonAPIResponse applyForSuper(@PathVariable long id) {
+        CommonAPIResponse response = new CommonAPIResponse();
+        int result = userService.applyForSuper(id);
+        if (result > 0 ) {
+            return response;
+        }
+        response.setCode(400);
+        response.setMessage("审核为公司招聘管理员失败");
+        return response;
     }
 
 }

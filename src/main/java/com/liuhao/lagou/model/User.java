@@ -12,16 +12,9 @@ public class User {
     private String resume;
     private int isSuper;
     private String company;
+    private int education;
 
     public User() {
-    }
-
-    public User(long id) {
-        this.id = id;
-    }
-
-    public User(String token) {
-        this.token = token;
     }
 
     public long getId() {
@@ -46,6 +39,14 @@ public class User {
 
     public void setSex(int sex) {
         this.sex = sex;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getPassword() {
@@ -104,12 +105,12 @@ public class User {
         this.company = company;
     }
 
-    public String getMobile() {
-        return mobile;
+    public int getEducation() {
+        return education;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setEducation(int education) {
+        this.education = education;
     }
 
     @Override
@@ -121,11 +122,12 @@ public class User {
                 ", mobile='" + mobile + '\'' +
                 ", password='" + password + '\'' +
                 ", token='" + token + '\'' +
-                ", city='" + city + '\'' +
-                ", job='" + job + '\'' +
+                ", city=" + city +
+                ", job=" + job +
                 ", resume='" + resume + '\'' +
                 ", isSuper=" + isSuper +
                 ", company='" + company + '\'' +
+                ", education=" + education +
                 '}';
     }
 }

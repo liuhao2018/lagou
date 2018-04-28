@@ -1,10 +1,8 @@
 package com.liuhao.lagou.mapper;
 
+import com.liuhao.lagou.mapper.provider.UserUpdateProvider;
 import com.liuhao.lagou.model.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -12,21 +10,23 @@ import org.springframework.stereotype.Repository;
 public interface UserMapper {
 
     @Insert("insert into user (mobile,password) values (#{mobile},#{password})")
-    void register(User user);
+    int register(User user);
+
     @Select("select * from user where mobile = #{mobile} and password = #{password}")
     User login(User user);
+
     @Update("update user set token = #{token} where mobile = #{mobile}")
-    void refreshToken(User user);
+    int refreshToken(String mobile,String token);
 
     @Update("update user set password = #{password} where token = #{token}")
-    void resetPassword(User user);
-
-    @Update("update user set name = #{name},sex = #{sex},city = #{city}, job = #{job} where token = #{token}")
-    void updateUserName(User user);
+    int resetPassword(User user);
 
     @Select("select * from user where id = #{id}")
-    User view(User user);
+    User view(long id);
 
-    @Update("update user set super = 1 where token = #{token}")
-    void applyForSuper(User user);
+    @Update("update user set super = 1 where id = #{id}")
+    int applyForSuper(long id);
+
+    @UpdateProvider(type = UserUpdateProvider.class,method = "update")
+    int updateUserInfo(User user);
 }
