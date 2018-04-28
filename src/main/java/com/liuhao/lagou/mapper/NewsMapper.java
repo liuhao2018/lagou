@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface NewsMapper {
 
-    @Insert("insert into news (title,author,type,news_url) values (#{title},#{author},#{type},#{news_url})")
+    @Insert("insert into news (title,author,type,img_url,news_url) values (#{title},#{author},#{type},#{img_url},#{news_url})")
     int addOne(News news);
 
     @Select("select news.id,news.title,news.author,news.news_url,news.type,news_type.type_name from news,news_type where news.type = news_type.id")

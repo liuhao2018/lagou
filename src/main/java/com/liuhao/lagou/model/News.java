@@ -7,6 +7,7 @@ public class News {
     private int type;
     private String type_name;
     private String author;
+    private String img_url;
 
     public News() {
     }
@@ -59,6 +60,14 @@ public class News {
         this.author = author;
     }
 
+    public String getImg_url() {
+        return img_url;
+    }
+
+    public void setImg_url(String img_url) {
+        this.img_url = img_url;
+    }
+
     @Override
     public String toString() {
         return "News{" +
@@ -68,6 +77,7 @@ public class News {
                 ", type=" + type +
                 ", type_name='" + type_name + '\'' +
                 ", author='" + author + '\'' +
+                ", img_url='" + img_url + '\'' +
                 '}';
     }
 }
