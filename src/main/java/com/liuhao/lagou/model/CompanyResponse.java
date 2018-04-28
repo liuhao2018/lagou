@@ -1,22 +1,19 @@
 package com.liuhao.lagou.model;
 
-public class Company {
+public class CompanyResponse {
     private long id;
     private String full_name;
     private String simple_name;
-    private String phone;
-    private String email;
     private String www;
-    private int city;
+    private String email;
     private String address;
-    private String boss;
-    private int employee_count;
     private String describe_info;
-    private String finance_status;
     private String service;
-    private int check;  //该公司是否通过系统是否审核
+    private int employee_count;
+    private String phone;
+    private String finance_status;
 
-    public Company() {
+    public CompanyResponse() {
     }
 
     public long getId() {
@@ -43,12 +40,12 @@ public class Company {
         this.simple_name = simple_name;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getWww() {
+        return www;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setWww(String www) {
+        this.www = www;
     }
 
     public String getEmail() {
@@ -59,44 +56,12 @@ public class Company {
         this.email = email;
     }
 
-    public String getWww() {
-        return www;
-    }
-
-    public void setWww(String www) {
-        this.www = www;
-    }
-
-    public int getCity() {
-        return city;
-    }
-
-    public void setCity(int city) {
-        this.city = city;
-    }
-
     public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getBoss() {
-        return boss;
-    }
-
-    public void setBoss(String boss) {
-        this.boss = boss;
-    }
-
-    public int getEmployee_count() {
-        return employee_count;
-    }
-
-    public void setEmployee_count(int employee_count) {
-        this.employee_count = employee_count;
     }
 
     public String getDescribe_info() {
@@ -107,14 +72,6 @@ public class Company {
         this.describe_info = describe_info;
     }
 
-    public String getFinance_status() {
-        return finance_status;
-    }
-
-    public void setFinance_status(String finance_status) {
-        this.finance_status = finance_status;
-    }
-
     public String getService() {
         return service;
     }
@@ -123,31 +80,44 @@ public class Company {
         this.service = service;
     }
 
-    public int getCheck() {
-        return check;
+    public int getEmployee_count() {
+        return employee_count;
     }
 
-    public void setCheck(int check) {
-        this.check = check;
+    public void setEmployee_count(int employee_count) {
+        this.employee_count = employee_count;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getFinance_status() {
+        return finance_status;
+    }
+
+    public void setFinance_status(String finance_status) {
+        this.finance_status = finance_status;
     }
 
     @Override
     public String toString() {
-        return "Company{" +
+        return "CompanyResponse{" +
                 "id=" + id +
                 ", full_name='" + full_name + '\'' +
                 ", simple_name='" + simple_name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
                 ", www='" + www + '\'' +
-                ", city=" + city +
+                ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
-                ", boss='" + boss + '\'' +
-                ", employee_count=" + employee_count +
                 ", describe_info='" + describe_info + '\'' +
-                ", finance_status='" + finance_status + '\'' +
                 ", service='" + service + '\'' +
-                ", check=" + check +
+                ", employee_count=" + employee_count +
+                ", phone='" + phone + '\'' +
+                ", finance_status='" + finance_status + '\'' +
                 '}';
     }
 }

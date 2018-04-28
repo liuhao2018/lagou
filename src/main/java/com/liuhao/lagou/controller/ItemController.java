@@ -2,6 +2,7 @@ package com.liuhao.lagou.controller;
 
 import com.liuhao.lagou.model.CommonAPIResponse;
 import com.liuhao.lagou.model.Item;
+import com.liuhao.lagou.model.ItemResponse;
 import com.liuhao.lagou.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +17,15 @@ public class ItemController {
     private IItemService itemService;
 
     @PostMapping("/")
-    public CommonAPIResponse addItem(@RequestBody Item item) {
-        itemService.addItem(item);
-        return new CommonAPIResponse();
+    public CommonAPIResponse addItem(Item item) {
+        CommonAPIResponse response = new CommonAPIResponse();
+        int result = itemService.addItem(item);
+        if (result > 0 ) {
+            return response;
+        }
+        response.setCode(400);
+        response.setMessage("提交数据异常");
+        return response;
     }
 
     @GetMapping("/{id}")
@@ -30,9 +37,9 @@ public class ItemController {
     }
 
     @GetMapping("/")
-    public CommonAPIResponse<List<Item>> findAll() {
-        List<Item> items = itemService.findAll();
-        CommonAPIResponse<List<Item>> response = new CommonAPIResponse<>();
+    public CommonAPIResponse<List<ItemResponse>> findAll() {
+        List<ItemResponse> items = itemService.findAll();
+        CommonAPIResponse<List<ItemResponse>> response = new CommonAPIResponse<>();
         response.setData(items);
         return response;
     }

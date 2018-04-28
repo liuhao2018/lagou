@@ -78,7 +78,7 @@ CREATE TABLE `company` (
   `address` varchar(255) DEFAULT NULL,
   `boss` varchar(255) DEFAULT NULL,
   `employee_count` int(11) DEFAULT NULL,
-  `describe` varchar(255) DEFAULT NULL,
+  `describe_info` varchar(255) DEFAULT NULL,
   `finance_status` varchar(255) DEFAULT NULL,
   `service` varchar(255) DEFAULT NULL,
   `check` tinyint(4) DEFAULT NULL,

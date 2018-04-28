@@ -2,6 +2,7 @@ package com.liuhao.lagou.service.impl;
 
 import com.liuhao.lagou.mapper.ItemMapper;
 import com.liuhao.lagou.model.Item;
+import com.liuhao.lagou.model.ItemResponse;
 import com.liuhao.lagou.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,8 @@ public class ItemServiceImpl implements IItemService {
     private ItemMapper itemMapper;
 
     @Override
-    public void addItem(Item item) {
-        itemMapper.addItem(item);
+    public int addItem(Item item) {
+        return itemMapper.addItem(item);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class ItemServiceImpl implements IItemService {
     }
 
     @Override
-    public List<Item> findAll() {
+    public List<ItemResponse> findAll() {
         return itemMapper.findAll();
     }
 
