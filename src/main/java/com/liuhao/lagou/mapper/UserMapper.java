@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface UserMapper {
 
     @Insert("insert into user (mobile,password) values (#{mobile},#{password})")
-    int register(String mobile,String password);
+    int register(@Param("mobile") String mobile,@Param("password") String password);
 
     @Select("select * from user where mobile = #{mobile} and password = #{password}")
     User login(User user);
@@ -18,8 +18,8 @@ public interface UserMapper {
     @Update("update user set token = #{token} where mobile = #{mobile}")
     int refreshToken(String mobile,String token);
 
-    @Update("update user set password = #{password} where id = #{id}")
-    int resetPassword(long id,String password);
+    @Update("update user set `password` = #{password} where id = #{id}")
+    int resetPassword(@Param("id") long id,@Param("password") String password);
 
     @Select("select * from user where id = #{id}")
     User view(long id);
