@@ -3,6 +3,7 @@ package com.liuhao.lagou.service.impl;
 import com.liuhao.lagou.mapper.UserMapper;
 import com.liuhao.lagou.model.User;
 import com.liuhao.lagou.service.IUserService;
+import com.liuhao.lagou.util.MD5Util;
 import com.liuhao.lagou.util.TokenGenerateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,8 @@ public class UserServiceImpl implements IUserService {
     private UserMapper userMapper;
 
     @Override
-    public int register(User user) {
-        return userMapper.register(user);
+    public int register(String mobile,String password) {
+        return userMapper.register(mobile, MD5Util.MD5Encode(password,"UTF-8"));
     }
 
     @Override
@@ -31,8 +32,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public int resetPassword(User user) {
-        return userMapper.resetPassword(user);
+    public int resetPassword(long id,String password) {
+        return userMapper.resetPassword(id,MD5Util.MD5Encode(password,"UTF-8"));
     }
 
     @Override

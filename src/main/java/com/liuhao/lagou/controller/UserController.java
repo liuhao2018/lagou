@@ -1,6 +1,7 @@
 package com.liuhao.lagou.controller;
 
 import com.liuhao.lagou.model.CommonAPIResponse;
+import com.liuhao.lagou.model.ResetPassword;
 import com.liuhao.lagou.model.User;
 import com.liuhao.lagou.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class UserController {
     @PostMapping("/register")
     public CommonAPIResponse register(@RequestBody User user) {
         CommonAPIResponse response = new CommonAPIResponse();
-        int result = userService.register(user);
+        int result = userService.register(user.getMobile(),user.getMobile());
         if (result > 0 ) {
             return response;
         }
@@ -43,9 +44,9 @@ public class UserController {
     }
 
     @PostMapping("/reset-password")
-    public CommonAPIResponse resetPassword(@RequestBody User user) {
+    public CommonAPIResponse resetPassword(@RequestBody ResetPassword resetPassword) {
         CommonAPIResponse response = new CommonAPIResponse();
-        int result = userService.resetPassword(user);
+        int result = userService.resetPassword(resetPassword.getId(),resetPassword.getPassword());
         if (result > 0 ) {
             return response;
         }
